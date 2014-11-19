@@ -13,5 +13,5 @@ class ScenarioIntegrationTest(unittest.TestCase):
         print jmx_info
         generator = ScenarioGenerator(jmx_info)
         script = generator.generate_scenario()
-        uploader = ScenarioUploader.upload('test1',script)
+        uploader = ScenarioUploader.upload('test2',script)
         print uploader
