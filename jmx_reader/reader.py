@@ -48,6 +48,9 @@ class JMXReader(object):
         plan = self._root.find('hashTree//TestPlan')
         return plan.attrib['testname']
 
+    def _find_ramp_time(self):
+        return int(self._root.find("hashTree//ThreadGroup/stringProp/[@name='ThreadGroup.ramp_time']").text)
+
     def create_jmx_info(self):
         # domain_name
         info = JMXInfo()

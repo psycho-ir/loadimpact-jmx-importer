@@ -43,3 +43,7 @@ class TestReader(unittest.TestCase):
     def test_find_test_name(self):
         test_name = self.reader._find_test_name()
         self.assertEqual(test_name, 'My test plan')
+
+    def test_find_ramp_time(self):
+        ramp_time = self.reader._find_ramp_time()
+        self.assertEqual(ramp_time, 60)
