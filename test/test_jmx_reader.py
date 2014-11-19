@@ -1,4 +1,4 @@
-from jmx_reader.reader import JMXReader, JMXUrl
+from importer.jmx_reader import *
 
 __author__ = 'soroosh'
 import unittest
