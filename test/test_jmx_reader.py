@@ -24,6 +24,7 @@ class TestJMXUul(unittest.TestCase):
 class TestReader(unittest.TestCase):
     def setUp(self):
         self.reader = JMXReader('../plans/Jmetertestplan.jmx')
+        self.actual_domain = 'test.loadimpact.com'
 
     def test_jmx_reader_should_throw_exception_when_file_is_None(self):
         self.assertRaises(Exception, JMXReader, None)
@@ -38,7 +39,7 @@ class TestReader(unittest.TestCase):
 
     def test_find_domain(self):
         domain = self.reader._find_domain()
-        self.assertEqual(domain, 'test.loadimpact.com')
+        self.assertEqual(domain, self.actual_domain)
 
     def test_find_test_name(self):
         test_name = self.reader._find_test_name()
@@ -59,4 +60,8 @@ class TestReader(unittest.TestCase):
     def test_find_urls_last_one_should_have_one_query_parameter(self):
         urls = self.reader._find_urls()
         self.assertEqual(len(urls[-1].parameters), 2)
+
+    def test_create_jmx_info(self):
+        jmx_info = self.reader.create_jmx_info()
+        self.assertEqual(jmx_info.domain, self.actual_domain)
 

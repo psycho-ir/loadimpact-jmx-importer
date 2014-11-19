@@ -18,6 +18,15 @@ class JMXUrl(object):
     def add_parameter(self, name, value):
         self.parameters[name] = value
 
+    def __repr__(self):
+        return '[url:%s, method:%s, parameters:%s]' % (self.url, self.method, self.parameters)
+
+    def __str__(self):
+        return '[url:%s, method:%s, parameters:%s]' % (self.url, self.method, self.parameters)
+
+    def __unicode__(self):
+        return '[url:%s, method:%s, parameters:%s]' % (self.url, self.method, self.parameters)
+
 
 class JMXInfo(object):
     def __init__(self, test_name, num_of_threads, ramp_time, domain, urls):
@@ -26,6 +35,15 @@ class JMXInfo(object):
         self.ramp_time = ramp_time
         self.domain = domain
         self.urls = urls
+
+    def __str__(self):
+        return '[test_name:%s, num_of_threads:%s, ramp_time=%s, domain:%s,urls:%s]' % (
+            self.test_name,
+            self.num_of_threads,
+            self.ramp_time,
+            self.domain,
+            self.urls
+        )
 
 
 class JMXReader(object):
@@ -72,8 +90,14 @@ class JMXReader(object):
 
 
     def create_jmx_info(self):
-        # domain_name
-        info = JMXInfo()
+        test_name = self._find_test_name()
+        num_threads = self._find_num_of_threads()
+        ramp_time = self._find_ramp_time()
+        domain = self._find_domain()
+        urls = self._find_urls()
+
+        info = JMXInfo(test_name, num_threads, ramp_time, domain, urls)
+        return info
 
 
 
