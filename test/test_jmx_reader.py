@@ -47,3 +47,16 @@ class TestReader(unittest.TestCase):
     def test_find_ramp_time(self):
         ramp_time = self.reader._find_ramp_time()
         self.assertEqual(ramp_time, 60)
+
+    def test_find_num_of_threads(self):
+        num = self.reader._find_num_of_threads()
+        self.assertEqual(num, 50)
+
+    def test_find_urls(self):
+        urls = self.reader._find_urls()
+        self.assertEqual(len(urls), 5)
+
+    def test_find_urls_last_one_should_have_one_query_parameter(self):
+        urls = self.reader._find_urls()
+        self.assertEqual(len(urls[-1].parameters), 2)
+

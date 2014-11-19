@@ -51,6 +51,26 @@ class JMXReader(object):
     def _find_ramp_time(self):
         return int(self._root.find("hashTree//ThreadGroup/stringProp/[@name='ThreadGroup.ramp_time']").text)
 
+    def _find_num_of_threads(self):
+        return int(self._root.find("hashTree//ThreadGroup/stringProp/[@name='ThreadGroup.num_threads']").text)
+
+    def _find_urls(self):
+        sampler_proxies = self._root.iter('HTTPSamplerProxy')
+        urls = []
+        for sampler in sampler_proxies:
+            url = sampler.find("stringProp/[@name='HTTPSampler.path']").text
+            method = sampler.find("stringProp/[@name='HTTPSampler.method']").text
+            arguments = sampler.find("elementProp/collectionProp/[@name='Arguments.arguments']")
+            parameters = {}
+            for argument in arguments.iter('elementProp'):
+                name = argument.find("stringProp/[@name='Argument.name']").text
+                value = argument.find("stringProp/[@name='Argument.value']").text
+                parameters[name] = value
+            url = JMXUrl(url, method, parameters)
+            urls.append(url)
+        return urls
+
+
     def create_jmx_info(self):
         # domain_name
         info = JMXInfo()
