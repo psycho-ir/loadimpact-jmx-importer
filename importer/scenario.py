@@ -1,7 +1,8 @@
+import loadimpact
+import settings
+
 __author__ = 'soroosh'
 import urllib
-
-urllib.urlencode({'aa': 'aaa'})
 
 
 class ScenarioGenerator(object):
@@ -24,7 +25,6 @@ class ScenarioGenerator(object):
 
 
     def generate_scenario(self):
-        script = ''
         requests = []
         if len(self.jmx_info.urls) == 0:
             raise Exception("At least 1 url is required for generating scenario")
@@ -34,10 +34,19 @@ class ScenarioGenerator(object):
                 url = url + '?' + urllib.urlencode(jmxurl.parameters)
             request = ScenarioGenerator.request_template % (jmxurl.method, url)
             requests.append(request)
-        script = ScenarioGenerator.request_template
-        script = script % (','.join(requests))
+        script = ScenarioGenerator.request_batch_template
+        script %= ','.join(requests)
 
         return script
+
+
+class ScenarioUploader(object):
+    client = loadimpact.ApiTokenClient(api_token=settings.loadimpact_api_token)
+
+    @staticmethod
+    def upload(name, script):
+        scenario = ScenarioUploader.client.create_user_scenario({'name': name, 'load_script': script})
+        return scenario
 
 
 
