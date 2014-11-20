@@ -13,6 +13,8 @@ import loadimpact.clients
 class ScenarioIntegrationTest(unittest.TestCase):
     def setUp(self):
         client = loadimpact.ApiTokenClient(api_token=settings.loadimpact_api_token)
+        configs = client.list_test_configs()
+        map(lambda config: config.delete(), configs)
         scenarios = client.list_user_scenarios()
         scenario = filter(lambda s: s.name == 'test3', scenarios)
         if scenario:
