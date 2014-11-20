@@ -4,6 +4,7 @@ import settings
 __author__ = 'soroosh'
 import urllib
 
+__all__ = ['ScenarioGenerator', 'ScenarioUploader']
 
 class ScenarioGenerator(object):
     request_template = '{"%s","%s"}'
