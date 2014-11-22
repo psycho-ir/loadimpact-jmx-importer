@@ -12,10 +12,12 @@ HOW TO USE
 3. import jmx_importer
 4. pass jmx file paths to upload_jmx_files method as a list.
 
+```
 import jmx_importer
 api = jmx_importer.SimpleAPI()
 failed_results = api.upload_jmx_files(['path_to_jmx1','path_to_jmx2'])
 map(lambda failed_result: print 'File: %s, Error is:%s' % failed_result ,failed_results)
+```
 
 
 Note: The result of upload_jmx_files is a list of tuples which contains failed jmx path and its error.
