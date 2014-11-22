@@ -23,6 +23,8 @@ for failed_result in failed_results:
 Note: The result of upload_jmx_files is a list of tuples which contains failed jmx path and its error.
 Note: You can pass boolean value for fail_fast parameter. If fail_fast is True then uploading will stop on first failure.
 
+Also you could use jmx_importer to upload just scenario or create just test configuration. For more information please check the tests.
+
 
 
 
