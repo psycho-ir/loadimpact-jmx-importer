@@ -1,10 +1,9 @@
-from importer.jmx_reader import *
-
 __author__ = 'soroosh'
+from importer.jmx_reader import *
 import unittest
 
 
-class TestJMXUul(unittest.TestCase):
+class TestJMXUrl(unittest.TestCase):
     def test_jmxurl_should_throw_exception_when_url_is_None(self):
         self.assertRaises(Exception, JMXUrl, None, 'get', {})
 
@@ -59,7 +58,7 @@ class TestReader(unittest.TestCase):
 
     def test_find_urls_last_one_should_have_one_query_parameter(self):
         urls = self.reader._find_urls()
-        self.assertEqual(len(urls[-1].parameters), 2)
+        self.assertEqual(len(urls[-1].parameters), 1)
 
     def test_create_jmx_info(self):
         jmx_info = self.reader.create_jmx_info()
