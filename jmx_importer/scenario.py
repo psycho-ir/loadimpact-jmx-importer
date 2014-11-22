@@ -26,7 +26,8 @@ class ScenarioGenerator(object):
             if len(jmxurl.parameters) > 0:
                 encoded_params = urllib.urlencode(jmxurl.parameters)
             if jmxurl.method == 'GET':
-                request = ScenarioGenerator.post_request_template % (jmxurl.method, self.jmx_info.domain + url + '?' + encoded_params)
+                if encoded_params != "": encoded_params = '?' + encoded_params
+                request = ScenarioGenerator.get_request_temple % (jmxurl.method, self.jmx_info.domain + url + encoded_params)
             else:
                 request = ScenarioGenerator.post_request_template % (jmxurl.method, self.jmx_info.domain + url, encoded_params)
             requests.append(request)
