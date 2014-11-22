@@ -5,6 +5,8 @@ __author__ = 'soroosh'
 from configuration import *
 from scenario import *
 
+__all__ = ['SimpleAPI', 'ScenarioGenerator', 'ScenarioUploader', 'ConfigurationGenerator', 'ConfigurationUploader']
+
 
 class SimpleAPI(object):
     def upload_jmx_files(self, file_paths, fail_fast=True):
