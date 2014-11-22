@@ -51,8 +51,8 @@ class SimpleAPITest(IntegrationTest):
     def test_simpleapi_with_one_jmx(self):
         api = SimpleAPI()
         paths = ['../plans/Jmetertestplan.jmx', '../plans/Jmetertestplan.jmx']
-        api.upload_jmx_files(paths)
-        print type(paths)
+        failed_result = api.upload_jmx_files(paths)
+        self.assertEqual(0, len(failed_result))
 
     def test_upload_should_return_one_failed_path(self):
         api = SimpleAPI()
