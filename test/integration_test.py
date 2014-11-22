@@ -71,3 +71,11 @@ class SimpleAPITest(IntegrationTest):
         paths = ['..', '../plans/Jmetertestplan.jmx', '/', '...']
         failed_result = api.upload_jmx_files(paths, fail_fast=False)
         self.assertEqual(3, len(failed_result))
+
+    def test_upload_jmx_with_post_method(self):
+        api = SimpleAPI()
+        paths = ['../plans/Jmetertestplan2.jmx']
+        failed_result = api.upload_jmx_files(paths, fail_fast=False)
+        self.assertEqual(0, len(failed_result))
+
+
