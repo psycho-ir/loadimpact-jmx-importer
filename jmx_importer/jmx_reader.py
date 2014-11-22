@@ -1,4 +1,5 @@
 __author__ = 'soroosh'
+
 import os
 import xml.etree.ElementTree as ET
 
@@ -87,7 +88,6 @@ class JMXReader(object):
             url = JMXUrl(url, method, parameters)
             urls.append(url)
         return urls
-
 
     def create_jmx_info(self):
         test_name = self._find_test_name()
