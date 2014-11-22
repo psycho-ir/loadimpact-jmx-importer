@@ -6,20 +6,10 @@ import urllib
 
 __all__ = ['ScenarioGenerator', 'ScenarioUploader']
 
-class ScenarioGenerator(object):
-    request_template = '{"%s","%s"}'
-    request_batch_template = 'http.request_batch({%s})'
-    template = '''http.request_batch({
-            {"GET", "http://test.loadimpact.com"},
-            {"GET", "http://test.loadimpact.com/news.php"}
-        })
-        client.sleep(15)
-        http.request_batch({
-            {"GET", "http://test.loadimpact.com/flip_coin.php"},
-            {"GET", "http://test.loadimpact.com/news.php?bet=tails"}
-        })
-        '''
 
+class ScenarioGenerator(object):
+    request_template = '{"%s","%s",nil,{},"%s"}'
+    request_batch_template = 'http.request_batch({%s})'
 
     def __init__(self, jmx_info):
         self.jmx_info = jmx_info
@@ -31,9 +21,10 @@ class ScenarioGenerator(object):
             raise Exception("At least 1 url is required for generating scenario")
         for jmxurl in self.jmx_info.urls:
             url = jmxurl.url
+            encoded_params = ""
             if len(jmxurl.parameters) > 0:
-                url = url + '?' + urllib.urlencode(jmxurl.parameters)
-            request = ScenarioGenerator.request_template % (jmxurl.method, self.jmx_info.domain + url)
+                encoded_params = urllib.urlencode(jmxurl.parameters)
+            request = ScenarioGenerator.request_template % (jmxurl.method, self.jmx_info.domain + url, encoded_params)
             requests.append(request)
         script = ScenarioGenerator.request_batch_template
         script %= ','.join(requests)
