@@ -18,7 +18,6 @@ api = jmx_importer.SimpleAPI()
 failed_results = api.upload_jmx_files(['path_to_jmx1','path_to_jmx2'])
 
 for failed_result in failed_results:
-<br/>
     print 'File: %s, Error is:%s' % failed_result
 
 Note: The result of upload_jmx_files is a list of tuples which contains failed jmx path and its error.
