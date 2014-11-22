@@ -1,7 +1,5 @@
-from importer.jmx_reader import JMXInfo, JMXReader
-
 __author__ = 'soroosh'
-
+from jmx_reader import JMXReader
 from configuration import *
 from scenario import *
 

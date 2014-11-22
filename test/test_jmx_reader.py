@@ -1,5 +1,5 @@
 __author__ = 'soroosh'
-from importer.jmx_reader import *
+from jmx_importer.jmx_reader import *
 import unittest
 
 

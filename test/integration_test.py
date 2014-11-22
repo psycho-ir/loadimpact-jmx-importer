@@ -1,12 +1,12 @@
-from importer import SimpleAPI
+from jmx_importer import SimpleAPI
 import settings
 
 __author__ = 'soroosh'
 
 import unittest
-from importer.jmx_reader import JMXReader
-from importer.scenario import *
-from importer.configuration import *
+from jmx_importer.jmx_reader import JMXReader
+from jmx_importer.scenario import *
+from jmx_importer.configuration import *
 import loadimpact.clients
 
 
