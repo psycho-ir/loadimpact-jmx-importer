@@ -236,13 +236,6 @@
                   <stringProp name="Argument.metadata">=</stringProp>
                   <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 </elementProp>
-                <elementProp name="bot" elementType="HTTPArgument">
-                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">wow</stringProp>
-                  <stringProp name="Argument.metadata">=</stringProp>
-                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                  <stringProp name="Argument.name">bot</stringProp>
-                </elementProp>
               </collectionProp>
             </elementProp>
             <stringProp name="HTTPSampler.domain"></stringProp>
