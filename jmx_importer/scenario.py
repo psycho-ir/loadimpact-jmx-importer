@@ -8,7 +8,8 @@ __all__ = ['ScenarioGenerator', 'ScenarioUploader']
 
 
 class ScenarioGenerator(object):
-    request_template = '{"%s","%s",nil,{},"%s"}'
+    get_request_temple = '{"%s","%s"}'
+    post_request_template = '{"%s","%s",nil,{},"%s"}'
     request_batch_template = 'http.request_batch({%s})'
 
     def __init__(self, jmx_info):
@@ -24,11 +25,13 @@ class ScenarioGenerator(object):
             encoded_params = ""
             if len(jmxurl.parameters) > 0:
                 encoded_params = urllib.urlencode(jmxurl.parameters)
-            request = ScenarioGenerator.request_template % (jmxurl.method, self.jmx_info.domain + url, encoded_params)
+            if jmxurl.method == 'GET':
+                request = ScenarioGenerator.post_request_template % (jmxurl.method, self.jmx_info.domain + url + '?' + encoded_params)
+            else:
+                request = ScenarioGenerator.post_request_template % (jmxurl.method, self.jmx_info.domain + url, encoded_params)
             requests.append(request)
         script = ScenarioGenerator.request_batch_template
         script %= ','.join(requests)
-
         return script
 
 

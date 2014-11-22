@@ -12,7 +12,7 @@ class JMXUrl(object):
         if not isinstance(parameters, dict):
             raise Exception("parameters should be dictionary")
         self.url = url
-        self.method = method
+        self.method = method.upper()
         self.parameters = parameters
 
     def add_parameter(self, name, value):
