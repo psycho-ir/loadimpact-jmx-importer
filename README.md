@@ -17,8 +17,8 @@ import jmx_importer
 api = jmx_importer.SimpleAPI()
 failed_results = api.upload_jmx_files(['path_to_jmx1','path_to_jmx2'])
 
-for failed_result in failed_results:
-    print 'File: %s, Error is:%s' % failed_result
+map(lambda failed_result: print 'File: %s, Error is:%s' % failed_result ,failed_results)
+
 
 Note: The result of upload_jmx_files is a list of tuples which contains failed jmx path and its error.
 Note: You can pass boolean value for fail_fast parameter. If fail_fast is True then uploading will stop on first failure.
