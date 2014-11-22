@@ -4,13 +4,13 @@ import unittest
 
 
 class TestJMXUrl(unittest.TestCase):
-    def test_jmxurl_should_throw_exception_when_url_is_None(self):
+    def test_jmxurl_should_throw_exception_when_url_is_none(self):
         self.assertRaises(Exception, JMXUrl, None, 'get', {})
 
-    def test_jmxurl_should_throw_exception_when_method_is_None(self):
+    def test_jmxurl_should_throw_exception_when_method_is_none(self):
         self.assertRaises(Exception, JMXUrl, 'url', None, {})
 
-    def test_jmxurl_should_throw_exception_when_parameters_is_None(self):
+    def test_jmxurl_should_throw_exception_when_parameters_is_none(self):
         self.assertRaises(Exception, JMXUrl, 'url', 'get', None)
 
     def test_add_parameter_should_add_new_parameter(self):
@@ -25,7 +25,7 @@ class TestReader(unittest.TestCase):
         self.reader = JMXReader('../plans/Jmetertestplan.jmx')
         self.actual_domain = 'test.loadimpact.com'
 
-    def test_jmx_reader_should_throw_exception_when_file_is_None(self):
+    def test_jmx_reader_should_throw_exception_when_file_is_none(self):
         self.assertRaises(Exception, JMXReader, None)
 
     def test_jmx_reader_show_throw_exception_when_file_does_not_exist(self):
